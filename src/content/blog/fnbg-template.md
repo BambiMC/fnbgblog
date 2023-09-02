@@ -1,16 +1,14 @@
 ---
 author: Fabian Berger
-pubDatetime: 2022-09-23T15:22:00Z
-title: Adding new posts in AstroPaper theme
-postSlug: adding-new-posts-in-astropaper-theme
+pubDatetime: 2023-09-02T08:16:00Z
+title: FNBG TITLE
+postSlug: fnbg-title
 featured: true
-draft: false
+draft: true
 tags:
   - docs
 ogImage: ""
-description:
-  Some rules & recommendations for creating or adding new posts using AstroPaper
-  theme.
+description: FNBG DESCRIPTION
 ---
 
 Here are some rules/recommendations, tips & ticks for creating new posts in AstroPaper blog theme.
