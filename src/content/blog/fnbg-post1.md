@@ -1,8 +1,8 @@
 ---
 author: Fabian Berger
 pubDatetime: 2023-09-02T08:16:00Z
-title: How to handle iFrames in Cypress 12.17.4
-postSlug: how-to-handle-iframes-in-cypress-12.17.4
+title: How to handle iFrames in Cypress 13.1.0
+postSlug: how-to-handle-iframes-in-cypress-13.1.0
 featured: true
 draft: false
 tags:
@@ -10,7 +10,7 @@ tags:
   - Cypress
   - Test Automation
 ogImage: ""
-description: How to handle iFrames in Cypress 12.17.4 in a typescript environment
+description: How to handle iFrames in Cypress 13.1.0 in a typescript environment
 ---
 
 iFrames can be a pain to deal with in Test Automation.
@@ -43,8 +43,8 @@ Example test file:
 ```ts
 // support/Example.ts
 
-import { Base } from "../../support/Base";
-import { Foo } from "../../support/Foo";
+import { Base } from "@support/Base";
+import { Foo } from "@support/Foo";
 
 let base: Base = new Base();
 let foo: Foo = new Foo();
@@ -61,9 +61,9 @@ describe("Example test folder", () => {
 More examples:
 
 ```ts
-cy.get('.user-data.truncate').click(); 
+cy.get('.user-data.truncate').click(); -->
 this.getIframe().find('.user-data.truncate').click();
 
-cy.contains('Benutzer auswählen').click(); 
+cy.contains('Benutzer auswählen').click(); -->
 this.getIframe().contains('Benutzer auswählen').click();
 ```

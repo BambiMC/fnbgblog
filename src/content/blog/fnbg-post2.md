@@ -1,8 +1,8 @@
 ---
 author: Fabian Berger
 pubDatetime: 2023-09-02T10:20:00Z
-title: "My take on: How to find CSS selectors efficiently in Cypress 12.17.4"
-postSlug: how-to-find-css-selectors-efficiently-in-cypress-12.17.4
+title: "My take on: How to find CSS selectors efficiently in Cypress 13.1.0"
+postSlug: how-to-find-css-selectors-efficiently-in-cypress-13.1.0
 featured: true
 draft: false
 tags:
@@ -10,7 +10,7 @@ tags:
   - Cypress
   - Test Automation
 ogImage: ""
-description: How to find CSS selectors efficiently in Cypress 12.17.4
+description: How to find CSS selectors efficiently in Cypress 13.1.0
 ---
 
 Under normal circumstances, you can just use the css selector generator inside the cypress test runner.

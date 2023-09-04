@@ -10,7 +10,7 @@ tags:
   - Cypress
   - Test Automation
 ogImage: ""
-description: How to find CSS selectors efficiently in Cypress 12.17.4
+description: How to find CSS selectors efficiently in Cypress 13.1.0
 ---
 
 My current list of small code snippets
@@ -116,3 +116,5 @@ Sonstiges:
   cy.logout();
   })
   })
+
+//FIXME fix favicon Mist
