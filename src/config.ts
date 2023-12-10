@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://blog.fnbg.de",
   author: "Fabian Berger",
   desc: "Small blog about small problems",
-  title: "factory new - Blog",
+  title: "FNBG - Blog",
   ogImage: "logo.svg",
   lightAndDarkMode: true,
   postPerPage: 3,
