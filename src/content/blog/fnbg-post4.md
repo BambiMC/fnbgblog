@@ -17,7 +17,7 @@ description: Good settings for running Gran Turismo 5 on RPCS3
 
 ### My specs:
 
-AMD Ryzen 9 7800X3D
+AMD Ryzen 7 7800X3D
 
 32GB 6000MHz CL30 DDR5
 
