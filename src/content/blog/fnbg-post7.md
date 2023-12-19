@@ -1,6 +1,6 @@
 ---
 author: Fabian Berger
-pubDatetime: 2023-12-18T10:00:00Z
+pubDatetime: 2023-12-19T13:00:00Z
 title: Cypress - Typs & Tricks
 postSlug: cypress-tips-and-tricks
 featured: true
@@ -18,18 +18,16 @@ description: My documentation / takeaways from working with Cypress in a typescr
 
 1. [Basic information about our tests](#basic-information-about-our-tests)
 2. [Basic structure of a test](#basic-structure-of-a-test)
-3. [Explanation of file structure (1)](#explanation-of-file-structure-1)
-4. [Explanation of file structure (2)](#explanation-of-file-structure-2)
-5. [How To CSS Selectors](#how-to-css-selectors)
-6. [Code Snippets - Examples](#code-snippets-examples)
-7. [Development Workflow](#development-workflow)
-8. [Anti-Patterns](#anti-patterns)
-9. [Sequence of steps in a test](#sequence-of-steps-in-a-test)
-10. [WTF Cypress, what's wrong with you?](#wtf-cypress-whats-wrong-with-you)
-11. [Type-Doc Documentation](#type-doc-documentation)
-12. [Explanation of a sample test](#explanation-of-a-sample-test)
-13. [Important to know](#important-to-know)
-14. [Have questions?](#have-questions)
+3. [How To CSS Selectors](#how-to-css-selectors)
+4. [Code Snippets - Examples](#code-snippets-examples)
+5. [Development Workflow](#development-workflow)
+6. [Anti-Patterns](#anti-patterns)
+7. [Sequence of steps in a test](#sequence-of-steps-in-a-test)
+8. [WTF Cypress, what's wrong with you?](#wtf-cypress-whats-wrong-with-you)
+9. [Type-Doc Documentation](#type-doc-documentation)
+10. [Explanation of a sample test](#explanation-of-a-sample-test)
+11. [Important to know](#important-to-know)
+12. [Have questions?](#have-questions)
 
 # Basic Information About Our Tests
 
@@ -50,10 +48,10 @@ The tests are constructed using the following two constructs. (One could also us
 
 **Important Points:**
 
-- `it` within an `it`: IGNORES EVERYTHING inside the inner `it`  do not use!
-- `describe` within an `it`: PRETENDS (in the test runner) as if the `describe` does not exist, but the content of the `describe` is still executed  do not use!
-- `describe` within a `describe`: practically infinitely possible  use!
-- `it` within a `describe`: `it` is executed wonderfully and marked as a test in the test run  use!
+- `it` within an `it`: IGNORES EVERYTHING inside the inner `it` --> do not use!
+- `describe` within an `it`: PRETENDS (in the test runner) as if the `describe` does not exist, but the content of the `describe` is still executed --> do not use!
+- `describe` within a `describe`: practically infinitely possible --> use!
+- `it` within a `describe`: `it` is executed wonderfully and marked as a test in the test run --> use!
 - Only in direct `it’s` are test cases also marked as such. If tested in `describe` (not in `it`) and fails → AssertionError.
 
 As a starting point, we recommend the following resources:
@@ -106,50 +104,11 @@ describe("Another great test", () => {
 });
 ```
 
-## Explanation of File Structure
-
-<div style="display: flex; align-items: center; flex">
-  <img src="/assets/blogContent/CypressDoc/Bild1.png" alt="Image Description" style="width: 50%; margin-right: 20px;">
-  <p>
-    downloads: Downloads that occur during any of the tests. Deleting is not worthwhile, as it will be downloaded again each time.
-    e2e: This folder contains all test sequences. Tests are categorized (multiple per category if needed), and the file extension must be *.cy.js.
-    Other categories are not opened here for better clarity.
-    fixtures: Fixtures are files required for the test, organized as specified here (e.g., processes, process maps, images, jsons, etc.).
-    plugins/index.js: File for indexing the used plugins (currently, all used plugins are listed in package.json, not here!).
-    support: All test-specific methods and their documentation are stored here.
-    testModules: All methods falling into a specific topic (specifically for one or two tests).
-
-  </p>
-</div>
-
-<div style="display: flex; align-items: center; flex">
-  <img src="/assets/blogContent/CypressDoc/Bild2.png" alt="Image Description" style="width: 50%; margin-right: 20px;">
-  <p>
-    Additional Methods + Documentation: Contains generic commands used in various tests that cannot be further specified (all REST commands are located in Rest.ts).
-    cypress-typedoc.js: A custom script that considers only the CustomCommands when generating documentation.
-    tsconfig.json: Configuration file for TypeScript to function.
-    doc: Stores the generated documentation. Simply start the live server with index.html (VSCode plugin).
-    Resources (Backup): Contains files needed to set up a local test instance (such as scripts called in the ssh methods).
-    node_modules: Dependencies of the Node project.
-    Resources (Backup): Setup files for developers to correctly configure the Cypress environment.
-    results: JUnit output folder.
-    .gitignore: Git configuration file (specifying folders/files to ignore).
-    checkDokuCoverage.py: Verifies that all methods are documented.
-    cypress.config.ts: Cypress configuration file, crucial!
-    Doku – Cypress & BPanda: This documentation here! (~$....docx: Temporary Word file, self-deleting).
-    package(-lock).json: Metadata for the Node project.
-    typedoc.json: Typedoc configuration file for documentation.
-
-  </p>
-</div>
-
-Apart from that, after the tests are executed in Jenkins, there is also a `results: JUnit Output` folder and a `videos` folder for recording the test run.
-
 ## How To CSS Selectors
 
 Depending on your experience with it, this might require some learning time. As long as there are no iframes present, it works quite well with the test runner. However, when more iframes are introduced, the test runner struggles, and paths need to be found manually.
 
-In my opinion, it works best with Chrome in conjunction with Ranorex (Yes, you heard it right) Selocity. Here, you can directly find and test paths without intermediaries. (Ranorex Selocity is a Chrome plugin and not available for Firefox.) If Firefox is a must (I also like using Firefox, but for this purpose, Selocity is just too good not to use), you can use SelectorsHub (Plugin for Firefox & Chrome) instead.
+In my opinion, it works best with Chrome in conjunction with Ranorex (Yes, you heard it right) Selocity. Here, you can directly find and test paths without intermediaries. (Ranorex Selocity is a Chrome plugin and not available for Firefox.) If Firefox is a must (I also like using Firefox, but for this purpose, Selocity is just too good not to use), you can use SelectorsHub (Plugin for Firefox & Chrome) instead. (really not recommended, but better than nothing, i guess)
 
 Example Selectors:
 
@@ -169,7 +128,7 @@ this.getIframe().contains('Benutzer auswählen').click();
 ```
 
 - Working with double-nested iframes:
-  No proper method available, but problem can be avoided with "real-events" plugin:
+  No proper method available, but problem can be kinda solved with the "real-events" plugin:
 
 ```typescript
 this.getIframe().find("vorheriger Input").realPress("Tab").realType("HEUREKA");
@@ -204,8 +163,8 @@ getProcessInfo(processName: string): any {
   return new Promise(function (resolve, reject) {
     cy.request({…}).then((response) => {
       let processInfos = {
-        processId: response.body.searchResultsProcess.docs[0].id,
-        processVersion: response.body.searchResultsProcess.docs[0].version,
+        processId: response.body.searchResultsProcess.id,
+        processCheck: response.body.searchResultsProcess.check,
       };
       resolve(processInfos);
     });
@@ -215,11 +174,11 @@ getProcessInfo(processName: string): any {
 
 ### Miscellaneous:
 
-- Change the test environment (local, 1st example is standard):
+- Change the test environment (local):
 
 ```typescript
-base.setVars_dev("identity-test", "https://docker01.mid.de:26443");
-base.setVars_dev("identity-alpha", "https://docker02.mid.de:14443/");
+base.setVars_dev("name1", "https://instance.foo.com");
+base.setVars_dev("name2", "https://instance.bar.com");
 ```
 
 - Den Rückgabewert eines REST-Requests im Testverlauf sichtbar machen (bzw. loggen):
@@ -243,13 +202,13 @@ cy.get('.results').then(searchResultsText => {
 - Check whether an element contains a specific link:
 
 ```typescript
-cy.get(".s5 > a").should("have.attr", "href", "https://www.mid.de/");
+cy.get(".s5 > a").should("have.attr", "href", "https://www.foo.com/");
 ```
 
 - Element is overlaid by another element or is not visible, but should still be able to be pressed:
 
 ```typescript
-cy.contains("Review beenden").click({ force: true });
+cy.contains("end current task").click({ force: true });
 ```
 
 - Check that a button is disabled:
@@ -258,7 +217,7 @@ cy.contains("Review beenden").click({ force: true });
 cy.get(".ng-valid-maxlength .valign-wrapper button").should("be.disabled");
 ```
 
-- Check how many elements can be found for a specific path: (Does not work for elements that do not exist at all  must be >= 1)
+- Check how many elements can be found for a specific path: (Does not work for elements that do not exist at all --> must be >= 1)
 
 ```typescript
 this.getIframe().find("mat-list-option").should("have.length", 5);
@@ -269,7 +228,7 @@ this.getIframe().find("mat-list-option").should("have.length", 5);
 ```typescript
 this.getIframe()
   .contains(title)
-  .parents("bp-attachment")
+  .parents("lk-attachment")
   .find("button")
   .click();
 ```
@@ -277,13 +236,13 @@ this.getIframe()
 - Press the enter key:
 
 ```typescript
-cy.get("#nicesInputElementMitNerID").type("{enter}");
+cy.get("#elementWithId").type("{enter}");
 ```
 
 - Check that an element does not exist:
 
 ```typescript
-this.getIframe().find(".bpmn-lint-button").should("not.exist");
+this.getIframe().find(".check-button").should("not.exist");
 ```
 
 - Check that an input (does not) contain a certain text:
@@ -299,7 +258,7 @@ this.getIframe()
 ```typescript
 checkTasksExist(tasks, shouldExist = true) {
   for (const task of tasks) {
-       this.getIframe().find("g[data-element-id^='Activity']").contains(task);
+       this.getIframe().find("g[test-element-id^='Activity']").contains(task);
   }
 }
 ```
@@ -308,7 +267,7 @@ checkTasksExist(tasks, shouldExist = true) {
 
 ```typescript
 cy.url().should("include", "/timeline");
-cy.url().should("eq", "https://docker01.mid.de:26443/timeline");
+cy.url().should("eq", "https://foo.com/bar");
 ```
 
 - Iterate over all selected elements and print its text/content:
@@ -335,13 +294,13 @@ cy.fixture("UserProfiles/TestProfiles_complete.json").then(users => {
 ### Start a Cypress test locally:
 
 - Start VSC
-- `...\git\bpanda-cypress` open
-- `PS C:\Users\fnberger\Documents\Git\bpanda-cypress> npx cypress open`
+- `...\git\app-cypress` open
+- `PS C:\Users\lk\Git\app-cypress> npx cypress open`
 - Start test (we are currently only using the supplied Elektron browser)
 
 ### (New) creation of the documentation:
 
-- `PS C:\Users\fnberger\Documents\Git\bpanda-cypress> npx typedoc --options "typedoc.json"`
+- `PS C:\Users\lk\Documents\Git\app-cypress> npx typedoc --options "typedoc.json"`
 - In VSC: `./doc/index.html` → right-click → Open with Live Server [VSCode plugin]
 - Docu: [http://127.0.0.1:5500/doc/interfaces/Cypress.cy.html](http://127.0.0.1:5500/doc/interfaces/Cypress.cy.html)
 
@@ -362,11 +321,11 @@ cy.fixture("UserProfiles/TestProfiles_complete.json").then(users => {
 
 - Goto test automation
 - Create element
-- Enter name → Copy from (e.g.) Cy-RiskManagement
+- Enter name → Copy from (e.g.) Cy-Foo
 - Configuration: Leave everything as it is, only customize test file
 - Adjustable: Run Parameter: (ONLY THOSE LISTED HERE!) (see `genSetRunEnvVar` method)
-  - `--env identityDomainName=(default value)identity-test`
-  - `--config baseUrl=(default value) https://docker01.mid.de:26443`
+  - `--env identityDomainName=bar`
+  - `--config baseUrl=(default value) https://foo.com`
 
 ### Integrate a plugin:
 
@@ -386,24 +345,23 @@ There are several options for this:
 
 Recommended (by Cypress) code editor: VS Code
 Other necessary software: NPM, Putty, Git, (Python(see 3 lines further))
-The scripts for the local test: Save under the following path: `C:\Script\` (Are contained under: `.\Resources(Backup)`)
 Check the documentation for completeness (you would need Python for this)
 
 - Execute the following command: `python checkDokuCoverage.py`
 
 ### Include new test in Jenkins:
 
-- Open Jenkins page: [http://jenkins.mid.de:8080/](http://jenkins.mid.de:8080/)
+- Open Jenkins page: [http://jenkins.foo.com/](http://jenkins.foo.com/)
 - Open the Test automation tab
 - Click on "Create element" in the top left corner
-- Enter the name (Cy-BlaBliBlub)
-- Copy from an existing test (e.g. Cy-Attachments)
+- Enter the name (Cy-Foo)
+- Copy from an existing test (e.g. Cy-Bar)
 - Click "OK" at the bottom edge
 - Parameters to be changed:
-  - Build procedure: `.\node_modules\.bin\cypress run --spec "cypress/e2e/Attachments/Attachments.cy.js"`
+  - Build procedure: `.\node_modules\.bin\cypress run --spec "cypress/e2e/Example/Example.cy.ts"`
 - Adjustable: Run parameters: (ONLY THOSE LISTED HERE!) (see `genSetRunEnvVar` method)
-  - `--env identityDomainName=(default value)identity-test`
-  - `--config baseUrl=(default value) https://docker01.mid.de:26443`
+  - `--env identityDomainName=bar`
+  - `--config baseUrl=https://foo.com`
 
 ## Anti-Patterns
 
@@ -417,7 +375,7 @@ Actually not to be used, [more info here](https://docs.cypress.io/guides/core-co
 ```typescript
 cy.get("small.heading-counter").then(searchResultsNumber => {
   if (searchResultsNumber.text().includes("16")) {
-    cy.log("Hier steckt irgendwo die '16' drin:" + searchResultsNumber.text());
+    cy.log("There is a '16' in here somewhere:" + searchResultsNumber.text());
   }
 });
 ```
@@ -440,7 +398,7 @@ As an example, to make the logic clear: The numbers indicate the respective sequ
 
 Cypress does some things that you probably wouldn't expect as a new user and are not obviously documented anywhere (see the sequence of a test, but maybe I'm just a blind fish and it is somewhere). So here is a small compilation of further inconsistencies that you are guaranteed to stumble across! I hope this helps! ^^
 
-1. read the [Best Practice's](https://docs.cypress.io/guides/references/best-practices) and stick to it halfway, but don't be sad if it doesn't work (I mean how many cy.wait(x) do we have in our tests, which are definitely necessary!) Can be partially optimized in the future, as the affected computers now have better hardware (Yey, future!)
+1. Read the [Best Practice's](https://docs.cypress.io/guides/references/best-practices) and stick to it halfway, but don't be sad if it doesn't work (I mean how many cy.wait(x) do we have in our tests, which are definitely necessary!) Can be partially optimized in the future, as the affected computers now have better hardware (Yey, future!)
 
 2. `let` / `var` do not work as usual in typescript (within a test only `const` works) (don't even try! (between 2 tests))
 
@@ -462,7 +420,7 @@ Cypress does some things that you probably wouldn't expect as a new user and are
        cy.location("pathname").invoke("split", "/").its(2).as("articleID");
        ```
 
-3. it is possible that the website to be tested generally outputs some errors when loading that are not handled. Cypress will not continue in such a case, which is generally not a bad thing! In this case, the developers should be informed in any case, but can be circumvented with the following measure in the "support/e2e.js" file:
+3. it is possible that the website to be tested generally outputs some errors when loading that are not handled. Cypress will not continue in such a case, which is generally not a bad thing! In this case, the developers should be informed in any case, but can be circumvented with the following measure in the "support/e2e.ts" file:
 
    ```typescript
    Cypress.on("uncaught:exception", (err, runnable) => {
@@ -523,7 +481,7 @@ Cypress does some things that you probably wouldn't expect as a new user and are
 
 ## Type-Doc Documentation
 
-Module prefixes: There are not corresponding tests for every module file, the modules sometimes simply combine topic-specific methods (e.g. ModelerModules)
+Module prefixes: There are not corresponding tests for every module file, the modules sometimes simply combine topic-specific methods
 How we design documentation comments:
 
 ```typescript
@@ -533,19 +491,18 @@ How we design documentation comments:
    *
    * @example uploadAttachment('file', 'Versand', 'Attachments/DHL=good.txt');
    * @param type - type of attachment ['link', 'video', 'file']
-   * @param processName - corresponding process name
    * @param fixtureSource - corresponding process file location
    */
-  uploadAttachment(type: 'link' | 'video' | 'file', processName: string, fixtureSource: string) {…}
+  uploadAttachment(type: 'link' | 'video' | 'file', fixtureSource: string) {…}
 
   /**
    * Upload a process over Rest-Requests
    *
-   * @example importProcess('/Processes/Guide.bpmn', true, '');
-   * @example importProcess('/Processes/Guide.bpmn');
-   * @example importProcess('/Processes/Arbeiten bei der MID.bpmn', 'Work at MID');
-   * @param filePath - the path to the process
-   * @param shouldWait - should wait for some time to be registered in the UI (in BPanda)
+   * @example importProcess('/Processes/Test.bla', true, '');
+   * @example importProcess('/Processes/Test.bla');
+   * @example importProcess('/Processes/Test.bla', 'Name for Test');
+   * @param filePath - the path to the process file
+   * @param shouldWait - should wait for some time to be registered in the UI
    * @param processName - sometimes the name of the process can be different to the filename, if that\'s the case, use this parameter
    */
   importProcess(filePath: string, shouldWait: boolean = true, processName: string = '') {…}
@@ -571,7 +528,7 @@ Methode returned eine Liste an Werten:
   /**
    * Return all information of this process
    *
-   * @example cy.restGetProcessInfo('Versand');
+   * @example cy.restGetProcessInfo('foo');
    * @param processName - the name of the process
    */
   restGetProcessInfo(processName: string): {
@@ -580,14 +537,9 @@ Methode returned eine Liste an Werten:
   };
 ```
 
-Further examples can be found in the existing module files within the project.
-Please always keep all methods up to date!
-
 ## Explanation of an example test
 
   <img src="/assets/blogContent/CypressDoc/Bild5.png" alt="Image description">
-
-The resetNightly_PC25() function call must always remain activated, if the test is not executed on PC25, the method is ignored anyway.
 
 it.skip() skips the corresponding test.
 
@@ -597,15 +549,12 @@ Cypress.env("foo") calls the environment variable with the name "foo" defined in
 
 ## Important to know
 
-How to switch off spell checking in Word for this one document:
+Typescript case conventions: The same as Javascript:
 
-- Options  Document check  Activate the last two options at the bottom
-  Typescript case conventions: The same as Javascript:
 - PascalCase for modules and classes
 - camelCase for methods and others
 
 For methods, always use the delay AFTER the action in the same method for timing reasons, NOT directly before the next action in another method, don't ask me why, but it makes a difference! In addition, more robust when developing new tests, as an action is always completed cleanly and you don't have to hope that the methods after/before will allow enough time
-For the ssh methods to work properly, the corresponding scripts must be stored under C:/Script/... . These can be found in the folder 'Resources (Backup)'. (RemoteDesktop: pc25.mid.de, Asdf1234!)
 When renaming a method, always use Ctrl+Shift+F[VSC] to search and replace in all files so that the declaration and documentation in the type definitions remain up to date.
 
 ## Any questions?
