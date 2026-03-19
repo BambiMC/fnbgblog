@@ -26,7 +26,7 @@ The blog is based on this <a href="https://github.com/satnaing/astro-paper" targ
 **Responsible Party:**
 
 - Fabian Berger
-- Ratiborer Straße 2
+- Jenaer Straße 1
 - 91058 Erlangen
 
 ## Disclaimer

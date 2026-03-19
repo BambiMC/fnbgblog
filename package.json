@@ -15,7 +15,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/rss": "^2.4.1",
+    "@astrojs/rss": "^4.0.0",
     "@resvg/resvg-js": "^2.4.1",
     "astro": "^5.18.0",
     "fuse.js": "^6.6.2",
@@ -52,7 +52,9 @@
   "overrides": {
     "micromatch": "4.0.8",
     "lodash": "4.17.23",
-    "undici": "^6.23.0",
-    "esbuild": "0.27.3"
+    "undici": "^6.24.0",
+    "esbuild": "0.27.3",
+    "file-type": "^21.3.1",
+    "fast-xml-parser": "^5.5.7"
   }
 }
